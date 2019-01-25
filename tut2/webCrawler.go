@@ -14,8 +14,8 @@ type SafeMap struct {
 func (sm *SafeMap) Found(key string) bool {
   sm.mux.Lock()
   defer sm.mux.Unlock()
-  if ok := sm.m[key]; ok {
-    // already visited return true
+  if visited := sm.m[key]; visited {
+    // already visited; return true
     return true
   } else {
     // not yet visited, add and return false
