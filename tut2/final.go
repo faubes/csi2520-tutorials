@@ -1,5 +1,5 @@
 // question 9 Complete the program for the output
-//Tree maple of height 1.550000 at Price 49.99
+// Tree maple of height 1.550000 at Price 49.99
 // Flower tulip, red at price 1.99
 package main
 
