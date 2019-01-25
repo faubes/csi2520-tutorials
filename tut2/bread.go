@@ -98,12 +98,31 @@ func (b *Bread) printBakeInstructions() {
 		b.instructions.temperature, b.instructions.bakeTime, b.instructions.coolTime)
 }
 
+
 func (b *Bread) printBreadInfo() {
 	fmt.Printf("%s bread \n", b.name)
 	fmt.Println(b.ingredients)
 	fmt.Printf("Weight %.3f kg\n\n", b.weight)
 	return
 }
+
+
+func addItemMap( mA, mB map[string]Item) (mC map[string]Item) {
+	mC = make(map[string]Item)
+	for k, v := range mA {
+		mC[k] = v
+	}
+	for nm, it := range mB {
+		if it2, ok := mC[nm]; ok {
+			it2.weight += it.weight
+			mC[nm] = it2 
+		} else {
+			mC[nm] = mB[nm]
+		}
+	}
+	return
+}
+
 
 func main() {
 	breads := []BakedGoods{NewBread(),
@@ -115,7 +134,9 @@ func main() {
 	have := map[string]Item{"whole wheat flour": Item{5000}, "salt": Item{500}, "sugar": Item{1000}}
 	need := make(map[string]Item)
 	for _, val := range breads {
-		need, have = val.shoppingList(have)
+		var needB map[string]Item
+		needB, have = val.shoppingList(have)
+		need = addItemMap( need, needB )
 	}
 	fmt.Println("Shopping List:")
 	fmt.Println(need)
