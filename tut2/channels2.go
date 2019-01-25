@@ -1,62 +1,20 @@
 package main
 
-import (
-	"fmt"
-  "unicode"
-)
+import "fmt"
 
-func ProcessLetters(c <-chan rune, out chan<- rune) {
-  for v := range c {
-    out <- unicode.ToUpper(v)
-  }
-  close(out)
+func ping(pings chan<- string, msg string) {
+  pings <- msg
 }
 
-func ProcessNumbers(c <-chan int, out chan<- int) {
-  sum := 0
-  for v := range c {
-    sum += v
-  }
-  out <- sum
-  close(out)
+func pong(pings <-chan string, pongs chan<- string) {
+  msg := <-pings
+  pongs <- msg
 }
-
 
 func main() {
-	const str = "csi2520 CBY B012 1990 VGA input"
-	numbers := make(chan int)
-	letters := make(chan rune)
-
-  out_numbers := make(chan int)
-  out_letters := make(chan rune)
-
-  go ProcessLetters(letters, out_letters)
-  go ProcessNumbers(numbers, out_numbers)
-
-	for _, v := range []rune(str) {
-		switch {
-		case unicode.IsDigit(v):
-      fmt.Println("Digit ", v)
-  		numbers <- int(v - '0')
-		case unicode.IsLetter(v):
-      fmt.Println("Letter ", v)
-			letters <- v
-    default:
-      fmt.Println(v)
-		}
-	}
-  close(numbers)
-  close(letters)
-
-  res := ""
-  for char := range out_letters {
-    res += string(char)
-  }
-  fmt.Println(res)
-
-  val, ok := <- out_numbers
-  if !ok {
-    panic("Something went very wrong")
-  }
-  fmt.Println("Sum is ", val)
+  pings := make(chan string, 1)
+  pongs := make(chan string, 1)
+  ping(pings, "passed message")
+  pong(pings, pongs)
+  fmt.Println(<-pongs)
 }
