@@ -2,13 +2,15 @@ package main
 
 import "fmt"
 
-func ping(pings chan<- string, msg string) {
-  pings <- msg
+func ping(c chan<- string, msg string) {
+  c <- msg
 }
 
-func pong(pings <-chan string, pongs chan<- string) {
-  msg := <-pings
-  pongs <- msg
+func pong(out <-chan string, in chan<- string) {
+  //msg := <-pings
+  //pings <- "hello"
+  // pongs <- msg
+  out <- <-in
 }
 
 func main() {

@@ -78,7 +78,7 @@ func start(units int,
 			done_canoes++
 			if done_canoes == 2 {
 				return
-			}
+			} // break
 		default:
 			go load(empty_boats, loaded_boats,
 				remaining_load, done_loading)

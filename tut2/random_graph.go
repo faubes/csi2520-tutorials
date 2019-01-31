@@ -172,7 +172,7 @@ func main() {
 	v := g.NewVertex()
 	fmt.Println("Generating random graph")
 	var wg sync.WaitGroup
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 15; i++ {
 		wg.Add(1)
 		//fmt.Println("Starting walker ", i)
 		go func() {

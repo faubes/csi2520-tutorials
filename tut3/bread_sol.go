@@ -115,7 +115,7 @@ func addItemMap( mA, mB map[string]Item) (mC map[string]Item) {
 	for nm, it := range mB {
 		if it2, ok := mC[nm]; ok {
 			it2.weight += it.weight
-			mC[nm] = it2 
+			mC[nm] = it2
 		} else {
 			mC[nm] = mB[nm]
 		}

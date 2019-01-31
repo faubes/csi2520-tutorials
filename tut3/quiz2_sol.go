@@ -1,3 +1,10 @@
+/*Le programme suivant doit être modifié de tel qu’il utilise un « slice » de
+taille arbitraire au lieu d’un tableau fixe.
+La taille soumit par l’utilisateur (variable sz) doit remplacer la valeur 32
+codé en dur de la taille du tableau. Modifiez la fonction main, ainsi que
+les autres fonctions si nécessaire.
+Soumettez votre solution en un fichier go. */
+
 package main
 
 import "fmt"
