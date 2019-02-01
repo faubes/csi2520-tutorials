@@ -20,6 +20,26 @@ package main
 import "fmt"
 
 func moveMinMax(a []int) []int {
+  if len(a) <= 1 {
+    return a
+  }
+  b := make(int[], len(a))
+  min := a[0]
+  max := a[0]
+  for i, v := range a {
+    if i == 0 {
+      continue
+    }
+    if v < min {
+      min = v
+      a[0], a[i] = a[i], v
+    }
+    if v > max {
+      max = v
+      a[0], a[i] = a[i], v
+    }
+  }
+  return a
 }
 
 func moveAndPrint(a []int) {

@@ -53,7 +53,7 @@ func moveAndPrint(a []int) {
 
 func main() {
 	var t1 = [7]int{3, 4, 8, 9, 5, 2, 7}
-  var t2 = [7]int{1, 1, 1, 1, 1, 1, 1}
+  var t2 = [7]int{3, 1, 1, 1, 1, 1, 1}
   var t3 = [7]int{1, 9, 2, 3, 4, 5, 6}
   var t4 = [7]int{9, 1, 2, 3, 4, 5, 6}
   moveAndPrint(t1[:])

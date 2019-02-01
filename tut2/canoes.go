@@ -89,18 +89,19 @@ func start(units int,
 }
 
 func main() {
-	empty_boats := make(chan canoe, 2)
+	empty_boats := make(chan canoe, 3)
 	empty_boats <- canoe{"Small canoe", 10}
 	empty_boats <- canoe{"Big canoe", 15}
+	empty_boats <- canoe{"Tanker", 75}
 
-	loaded_boats := make(chan canoe, 2)
+	loaded_boats := make(chan canoe, 3)
 
 	remaining_load := make(chan int, 1)
 
-	done_loading := make(chan bool, 2)
-	all_done := make(chan bool, 2)
+	done_loading := make(chan bool, 3)
+	all_done := make(chan bool, 3)
 
-  units := 65
+  units := 165
 
 	start(units, empty_boats, loaded_boats,
 		remaining_load, done_loading, all_done)
