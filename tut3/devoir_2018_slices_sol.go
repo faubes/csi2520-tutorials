@@ -66,12 +66,12 @@ func main() {
 	var ok error
 	for {
 		fmt.Printf("Previous slice: %v\n", slice1)
-		for {
+		for { // input loop
 			slice2, ok = getSlice()
-			if ok == nil {
-				break
+			if ok != nil {
+				fmt.Println(ok) // bad input, print error and repeat
 			} else {
-				fmt.Println(ok)
+				break // good input, exit input loop
 			}
 		}
 		fmt.Printf("New slice: %v\n", slice2)
