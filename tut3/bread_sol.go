@@ -71,6 +71,7 @@ func (b *Bread) sumWeights() (weight float32) {
 	return
 }
 
+// b.shoppingList(asdf)
 func (b *Bread) shoppingList(have map[string]Item) (need, remain map[string]Item) {
 	need = make(map[string]Item)
 	remain = make(map[string]Item)
